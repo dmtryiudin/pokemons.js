@@ -7,6 +7,7 @@ export class EnvService {
       POKEMONS_API: process.env.POKEMONS_API,
       ETHEREUM_RPC: process.env.ETHEREUM_RPC,
       EFFECTIVE_POKEMONS: process.env.EFFECTIVE_POKEMONS,
+      PORT: process.env.PORT,
     };
   }
 

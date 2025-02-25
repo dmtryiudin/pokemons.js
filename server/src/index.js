@@ -29,7 +29,7 @@ const main = async () => {
 
   const app = express();
 
-  const PORT = 3000;
+  const PORT = EnvService.getValues().PORT;
 
   app.use(cors());
   app.use(bodyParser.json());
