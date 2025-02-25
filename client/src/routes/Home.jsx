@@ -10,6 +10,7 @@ import {
   Grid,
   HStack,
   Separator,
+  Spinner,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -66,23 +67,30 @@ export const HomePage = () => {
         minH="100vh"
         py={20}
         flexDirection="column"
-        justifyContent="space-between"
+        justifyContent={data ? "space-between" : "center"}
         gap="12"
       >
-        <Stack alignItems="center">
-          <Text textTransform="uppercase" fontWeight="bold" fontSize="2xl">
-            Start new battle
-          </Text>
-          <Flex w="100%" alignItems="center" gap={3}>
-            <Separator w="100%" />
-            <Text textTransform="uppercase">Or</Text>
-            <Separator w="100%" />
-          </Flex>
-          <Button w="100%" onClick={getBattleData} loading={battleDataLoading}>
-            Restore previous battle
-          </Button>
-        </Stack>
-        {data ? (
+        {isLoading && !data ? <Spinner size="xl" /> : null}
+        {data && (
+          <Stack alignItems="center">
+            <Text textTransform="uppercase" fontWeight="bold" fontSize="2xl">
+              Start new battle
+            </Text>
+            <Flex w="100%" alignItems="center" gap={3}>
+              <Separator w="100%" />
+              <Text textTransform="uppercase">Or</Text>
+              <Separator w="100%" />
+            </Flex>
+            <Button
+              w="100%"
+              onClick={getBattleData}
+              loading={battleDataLoading}
+            >
+              Restore previous battle
+            </Button>
+          </Stack>
+        )}
+        {data && (
           <Grid
             templateColumns={{
               base: "repeat(1, 1fr)",
@@ -96,8 +104,7 @@ export const HomePage = () => {
               <PokemonCard isLoading={isLoading} key={el.id} {...el} />
             ))}
           </Grid>
-        ) : null}
-
+        )}
         {data && (
           <PaginationRoot
             count={maxCount}

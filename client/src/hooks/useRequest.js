@@ -9,9 +9,9 @@ export function useRequest(callback) {
   const request = async (params) => {
     setError("");
     setIsError(false);
+    setIsLoading(true);
 
     try {
-      setIsLoading(true);
       const response = await callback(params);
       setData(response);
     } catch (e) {

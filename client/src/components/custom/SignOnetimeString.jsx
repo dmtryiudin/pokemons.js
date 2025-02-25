@@ -38,7 +38,7 @@ export const SignOnetimeString = () => {
 
   return (
     <Center h="100vh">
-      <Button onClick={authHandler} isLoading={authLoading}>
+      <Button onClick={authHandler} loading={authLoading}>
         Sign one time string to authenticate
       </Button>
     </Center>
